@@ -2,13 +2,13 @@
  * @NApiVersion 2.1
  * @NScriptType UserEventScript
  */
-define(['N/email', 'N/record', 'N/search'],
+define(['N/email', 'N/record', 'N/search','N/url','N/render'],
     /**
  * @param{email} email
  * @param{record} record
  * @param{search} search
  */
-    (email, record, search) => {
+    (email, record, search,url, render) => {
         /**
          * Defines the function definition that is executed before record is loaded.
          * @param {Object} scriptContext
@@ -75,10 +75,7 @@ define(['N/email', 'N/record', 'N/search'],
         
            
             let pdf = render.transaction({
-                recordType: "CUSTOMRECORD_JJ_AKSHAYA_TRAINING",
-                recordId: scriptContext.newRecord.id,
-                contents: pdfContents,
-                printMode:render.PrintMode.PDF
+                
              
             });
         
