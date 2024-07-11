@@ -3,14 +3,14 @@
  * @NScriptType ClientScript
  * @NModuleScope SameAccount
  */
-define(["N/record", "N/search", "N/email", "N/file", "N/http","N/render"], /**
+define(["N/record", "N/search", "N/email", "N/file", "N/http"], /**
  * @param{email} email
  * @param{file} file
  * @param{record} record
  * @param{search} search
  * @param{http} http
  */
-function (record, email, file, search, http,render) {
+function (record, email, file, search, http) {
   /**
    * Function to be executed after page is initialized.
    *
@@ -35,7 +35,7 @@ function (record, email, file, search, http,render) {
       let currentRecord = scriptContext.currentRecord;
       let courseId = currentRecord.getValue("custrecord_jj_ak_language");
     if(courseId){
-        // console.log(courseId);
+    // console.log(courseId);
     //   log.debug(courseId);
 
       //loading the fee record
@@ -61,8 +61,7 @@ function (record, email, file, search, http,render) {
         "custrecord_jj_ak_transaction_currency"
       );
       console.log(transactionCurrency);
-      const baseUrl =
-        "https://api.freecurrencyapi.com/v1/latest?apikey=fca_live_gIHHlCP2DtroHqbu7p9oGsqFnW31NuXQILwKi3Tw&currencies=EUR%2CUSD%2CCAD%2CGBP&base_currency=INR";
+      const baseUrl ="https://api.freecurrencyapi.com/v1/latest?apikey=fca_live_gIHHlCP2DtroHqbu7p9oGsqFnW31NuXQILwKi3Tw&currencies=EUR%2CUSD%2CCAD%2CGBP&base_currency=INR";
       const User = async () => {
         const response = await fetch(baseUrl);
 
@@ -119,47 +118,49 @@ function (record, email, file, search, http,render) {
 
   
   function saveRecord(scriptContext) {
-    let currentRecord = scriptContext.currentRecord;
+    // let currentRecord = scriptContext.currentRecord;
 
-    let name = currentRecord.getValue("custrecord_jj_ak_name");
-    let country = currentRecord.getValue("custrecord_jj_ak_country");
-    let age = currentRecord.getValue("custrecord_jj_ak_age");
-    let phone = currentRecord.getValue("custrecord_jj_ak_phone");
-    let email = currentRecord.getValue("custrecord_jj_ak_email");
-    let language = currentRecord.getValue("custrecord_jj_ak_language");
-    let baseCurrency = currentRecord.getValue("custrecord_jj_ak_base_currency");
-    let transactionCurrency = currentRecord.getValue("custrecord_jj_ak_transaction_currency");
-    let feeAmount = currentRecord.getValue("custrecord_jj_ak_fee_amount");
-    let exhangeRate = currentRecord.getValue("custrecord_jj_ak_exchange_rate");
+    // let name = currentRecord.getValue("custrecord_jj_ak_name");
+    // let country = currentRecord.getValue("custrecord_jj_ak_country");
+    // let age = currentRecord.getValue("custrecord_jj_ak_age");
+    // let phone = currentRecord.getValue("custrecord_jj_ak_phone");
+    // let email = currentRecord.getValue("custrecord_jj_ak_email");
+    // let language = currentRecord.getValue("custrecord_jj_ak_language");
+    // let baseCurrency = currentRecord.getValue("custrecord_jj_ak_base_currency");
+    // let transactionCurrency = currentRecord.getValue("custrecord_jj_ak_transaction_currency");
+    // let feeAmount = currentRecord.getValue("custrecord_jj_ak_fee_amount");
+    // let exhangeRate = currentRecord.getValue("custrecord_jj_ak_exchange_rate");
 
-    pdfContents = "Name: "+name+
-    "-Country: "+country+
-    "-Age: "+age+
-    "-Phone: "+phone+
-    "-Email: "+email+
-    "-Language: "+language+
-    "-Base Currency: "+baseCurrency+
-    "-Transaction Currency: "+transactionCurrency+
-    "-Fee Amount: "+feeAmount+
-    "-Exchange Rate: "+exhangeRate;
+
+
+    // pdfContents = "Name: "+name+
+    // "-Country: "+country+
+    // "-Age: "+age+
+    // "-Phone: "+phone+
+    // "-Email: "+email+
+    // "-Language: "+language+
+    // "-Base Currency: "+baseCurrency+
+    // "-Transaction Currency: "+transactionCurrency+
+    // "-Fee Amount: "+feeAmount+
+    // "-Exchange Rate: "+exhangeRate;
 
    
-    let pdf = render.transaction({
-        recordType: "CUSTOMRECORD_JJ_AKSHAYA_TRAINING",
-        recordId: scriptContext.currentRecord.id,
-        contents: pdfContents,
-        printMode:render.PrintMode.PDF
+    // let pdf = render.transaction({
+    //     recordType: "CUSTOMRECORD_JJ_AKSHAYA_TRAINING",
+    //     recordId: scriptContext.currentRecord.id,
+    //     contents: pdfContents,
+    //     printMode:render.PrintMode.PDF
      
-    });
+    // });
 
-    //snd mail from netsuite to all netsuite admins
-    email.send({
-      author: 1,
-      recipients: -5,
-      subject: "Tution Fee Query Received for Training",
-      body: "Custom Record:" ,
-      attachments: [pdf],
-    });
+    // //snd mail from netsuite to all netsuite admins
+    // email.send({
+    //   author: 1,
+    //   recipients: -5,
+    //   subject: "Tution Fee Query Received for Training",
+    //   body: "Custom Record:" ,
+    //   attachments: [pdf],
+    // });
   }
 
   return {
@@ -172,6 +173,6 @@ function (record, email, file, search, http,render) {
     // validateLine: validateLine,
     // validateInsert: validateInsert,
     // validateDelete: validateDelete,
-    saveRecord: saveRecord,
+    // saveRecord: saveRecord,
   };
 });
